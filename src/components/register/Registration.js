@@ -115,11 +115,12 @@ const RegistryForm = () => {
                         </div>
                     </form>
 
+
                     <p className="mt-10 text-center text-sm text-gray-500">
-                        Have not account yet?{' '}
+                        {mode === 'login' ? 'New to this app? ' : 'Already have an account? '}
                         <a onClick={() => setMode(mode === 'login' ? 'register' : 'login')} href="#"
                            className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-                            Registration
+                            {mode === 'login' ? 'Register' : 'Login'}
                         </a>
                     </p>
                 </div>

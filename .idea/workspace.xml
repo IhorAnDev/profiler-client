@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba2cf610-2c67-4fdd-8f7d-ded9861198b5" name="Changes" comment="add ignore">
-      <change afterPath="$PROJECT_DIR$/src/pages/register/Registration.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/register/Registration.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-    </list>
+    <list default="true" id="ba2cf610-2c67-4fdd-8f7d-ded9861198b5" name="Changes" comment="routes/token/refactoring" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -121,7 +113,7 @@
       <updated>1690788195430</updated>
       <workItem from="1690788196440" duration="8685000" />
       <workItem from="1690798008456" duration="712000" />
-      <workItem from="1690958622690" duration="20044000" />
+      <workItem from="1690958622690" duration="20369000" />
     </task>
     <task id="LOCAL-00001" summary="registration form">
       <created>1690797880462</created>
@@ -144,7 +136,21 @@
       <option name="project" value="LOCAL" />
       <updated>1690798611640</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="routes/token/refactoring">
+      <created>1690990601051</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1690990601051</updated>
+    </task>
+    <task id="LOCAL-00005" summary="routes/token/refactoring">
+      <created>1690990724967</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1690990724967</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -165,6 +171,7 @@
     <MESSAGE value="registration form" />
     <MESSAGE value="add toggle" />
     <MESSAGE value="add ignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="add ignore" />
+    <MESSAGE value="routes/token/refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="routes/token/refactoring" />
   </component>
 </project>

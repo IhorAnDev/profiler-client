@@ -1,10 +1,13 @@
 import './App.css';
-import Registration from "./components/register/Registration";
+import React, { useEffect } from 'react';
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import {browserHistory} from "./app/BrowserHistory";
 
-function App() {
+export const App = React.memo(({children}) => {
+
     return (
-        <Registration/>
-    );
-}
-
-export default App;
+        <Router history={browserHistory}>
+            {children}
+        </Router>
+    )
+})

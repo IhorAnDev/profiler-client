@@ -7,4 +7,5 @@ export const Loader = ({isInner}) => {
             <SpinnerImg src={spinner} alt="spinner"/>
         </LoaderWrap>
     )
+
 }

@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba2cf610-2c67-4fdd-8f7d-ded9861198b5" name="Changes" comment="routes/token/refactoring">
-      <change beforePath="$PROJECT_DIR$/src/pages/main-page/MainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/main-page/MainPage.js" afterDir="false" />
-    </list>
+    <list default="true" id="ba2cf610-2c67-4fdd-8f7d-ded9861198b5" name="Changes" comment="test" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,6 +18,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="3a7f4faa81876d406a2ddad58070cfc4a93cc9f4" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitToolBoxStore">
@@ -32,8 +35,12 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1690992277" />
+                  </RecentBranch>
+                  <RecentBranch>
                     <option name="branchName" value="dev" />
-                    <option name="lastUsedInstant" value="1690797960" />
+                    <option name="lastUsedInstant" value="1690991909" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="master" />
@@ -115,7 +122,7 @@
       <updated>1690788195430</updated>
       <workItem from="1690788196440" duration="8685000" />
       <workItem from="1690798008456" duration="712000" />
-      <workItem from="1690958622690" duration="20685000" />
+      <workItem from="1690958622690" duration="21816000" />
     </task>
     <task id="LOCAL-00001" summary="registration form">
       <created>1690797880462</created>
@@ -152,7 +159,14 @@
       <option name="project" value="LOCAL" />
       <updated>1690990724967</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="test">
+      <created>1690991864727</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1690991864727</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -174,6 +188,7 @@
     <MESSAGE value="add toggle" />
     <MESSAGE value="add ignore" />
     <MESSAGE value="routes/token/refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="routes/token/refactoring" />
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
 </project>

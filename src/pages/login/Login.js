@@ -2,12 +2,15 @@ import {useState} from "react";
 import {Link} from "react-router-dom";
 import {PATH_NAMES} from "../../consts";
 import {useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {setLoginStatus} from "../register/registerSlice";
 
 const Login = ({setToken}) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [isLogin, setIsLogin] = useState(false);
+
+    const dispatch = useDispatch();
 
     const navigate = useNavigate();
 
@@ -16,7 +19,7 @@ const Login = ({setToken}) => {
         // Handle login or registration logic here
         console.log('Logging in with:', {email, password});
 
-        setIsLogin(true);
+        dispatch(setLoginStatus(true));
         setToken('Bearer fklsadjklfjskldfjakls;djfkl;asjdf87897asfyasjdhfjk');
 
 

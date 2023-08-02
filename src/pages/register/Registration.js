@@ -2,6 +2,8 @@ import {useState} from "react";
 import {Link} from "react-router-dom";
 import {PATH_NAMES} from "../../consts";
 import {useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {setRegistered} from "./registerSlice";
 
 const RegistryForm = () => {
 
@@ -9,23 +11,22 @@ const RegistryForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [registered, setRegistered] = useState(false);
+
+    const {isRegistered} = useSelector(state => state.register);
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleAuthentication = (e) => {
         e.preventDefault();
         // Handle login or registration logic here
         console.log('Registering with:', {username, email, password, confirmPassword});
-        setRegistered(true);
+        dispatch(setRegistered(true));
 
         setUsername('');
         setEmail('');
         setPassword('');
         setConfirmPassword('');
-        setTimeout(() => {
-            setRegistered(false); // Reset registration status after redirectionRedirect to login page after successful registration
-        }, 3000);
     };
 
     return (
@@ -153,13 +154,13 @@ const RegistryForm = () => {
                     </p>
                 </div>
             </div>
-            {registered && (
+            {isRegistered && (
                 <div className="mt-10 text-center text-sm text-gray-500">
                     Successfully registered! Redirecting to login form...
                     {/* You can also use a timer to delay the redirection */}
                     {setTimeout(() => {
                         navigate(PATH_NAMES.HOME);
-                        setRegistered(false); // Reset registration status after redirection
+                        dispatch(setRegistered(false));
                     }, 1000)}
                 </div>
             )}

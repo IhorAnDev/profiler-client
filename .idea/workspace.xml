@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba2cf610-2c67-4fdd-8f7d-ded9861198b5" name="Changes" comment="routes/token/refactoring" />
+    <list default="true" id="ba2cf610-2c67-4fdd-8f7d-ded9861198b5" name="Changes" comment="routes/token/refactoring">
+      <change beforePath="$PROJECT_DIR$/src/pages/main-page/MainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/main-page/MainPage.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -113,7 +115,7 @@
       <updated>1690788195430</updated>
       <workItem from="1690788196440" duration="8685000" />
       <workItem from="1690798008456" duration="712000" />
-      <workItem from="1690958622690" duration="20369000" />
+      <workItem from="1690958622690" duration="20685000" />
     </task>
     <task id="LOCAL-00001" summary="registration form">
       <created>1690797880462</created>

@@ -7,4 +7,5 @@ const MainPage = ({token}) => {
     );
 }
 
+
 export default MainPage;

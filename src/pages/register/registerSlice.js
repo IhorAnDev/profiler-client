@@ -1,30 +1,52 @@
-import {createEntityAdapter, createSlice} from "@reduxjs/toolkit";
+import {createAsyncThunk, createEntityAdapter, createSlice} from "@reduxjs/toolkit";
+import {useHttp} from "../../package/hooks/http.hook";
 
 const registerAdapter = createEntityAdapter();
 
+const initialToken = localStorage.getItem('token') || '';
 
 const initialState = registerAdapter.getInitialState({
     isRegistered: false,
-    isLogged: false
+    token: initialToken,
+    registrationStatus: 'idle'
 });
+
+export const registerUser = createAsyncThunk(
+    'register/registerUser',
+    async ({username, email, password, confirmPassword}) => {
+        const {request} = useHttp();
+
+        const response = await request('http://localhost:8085/api/auth/signup', 'POST', {
+            username,
+            email,
+            password,
+            confirmPassword
+        }); // This should contain the response object from your API
+        localStorage.setItem('token', response.token);
+        return response;
+    }
+);
 export const registerSlice = createSlice({
 
     name: 'register',
     initialState,
 
-    reducers: {
-        setRegistered: (state, action) => {
-            state.isRegistered = action.payload;
-        },
-        setLoginStatus: (state, action) => {
-            state.isLogged = action.payload;
-        }
+    extraReducers: (builder) => {
+        builder
+            .addCase(registerUser.pending, (state, action) => {
+                state.registrationStatus = 'loading';
+            })
+            .addCase(registerUser.fulfilled, (state, action) => {
+                state.registrationStatus = 'idle';
+                state.isRegistered = true;
+            })
+            .addCase(registerUser.rejected, (state, action) => {
+                state.registrationStatus = 'failed';
+            })
     }
 })
 
-const {actions, reducer} = registerSlice;
+const {reducer} = registerSlice;
 
 export default reducer;
-
-export const {setRegistered, setLoginStatus} = actions;
 

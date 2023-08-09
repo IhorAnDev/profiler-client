@@ -3,7 +3,8 @@ import {Link} from "react-router-dom";
 import {PATH_NAMES} from "../../consts";
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {setRegistered} from "./registerSlice";
+import {registerUser} from "./registerSlice";
+import {Loader} from "../../package/components/Loader";
 
 const RegistryForm = () => {
 
@@ -12,22 +13,28 @@ const RegistryForm = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    const {isRegistered} = useSelector(state => state.register);
+    const {isRegistered, registrationStatus} = useSelector(state => state.register);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
-    const handleAuthentication = (e) => {
+    const handleAuthentication = async (e) => {
         e.preventDefault();
-        // Handle login or registration logic here
-        console.log('Registering with:', {username, email, password, confirmPassword});
-        dispatch(setRegistered(true));
+        if (password !== confirmPassword) {
+            throw new Error('Passwords do not match');
+        }
+        await dispatch(registerUser({username, email, password, confirmPassword}));
 
         setUsername('');
         setEmail('');
         setPassword('');
         setConfirmPassword('');
+        navigate(PATH_NAMES.MAIN);
     };
+
+
+    if (registrationStatus === 'loading') {
+        return <Loader/>;
+    }
 
     return (
         <>
@@ -157,11 +164,6 @@ const RegistryForm = () => {
             {isRegistered && (
                 <div className="mt-10 text-center text-sm text-gray-500">
                     Successfully registered! Redirecting to login form...
-                    {/* You can also use a timer to delay the redirection */}
-                    {setTimeout(() => {
-                        navigate(PATH_NAMES.HOME);
-                        dispatch(setRegistered(false));
-                    }, 1000)}
                 </div>
             )}
         </>

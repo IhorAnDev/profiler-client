@@ -3,31 +3,32 @@ import {Link} from "react-router-dom";
 import {PATH_NAMES} from "../../consts";
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {setLoginStatus} from "../register/registerSlice";
+import {Loader} from "../../package/components/Loader";
+import {loginUser} from "./loginSlice";
 
-const Login = ({setToken}) => {
+const Login = () => {
 
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const {isLogged, loginStatus} = useSelector(state => state.login);
 
     const dispatch = useDispatch();
 
     const navigate = useNavigate();
 
-    const handleAuthentication = (e) => {
+    const handleAuthentication = async (e) => {
         e.preventDefault();
-        // Handle login or registration logic here
-        console.log('Logging in with:', {email, password});
 
-        dispatch(setLoginStatus(true));
-        setToken('Bearer fklsadjklfjskldfjakls;djfkl;asjdf87897asfyasjdhfjk');
+        await dispatch(loginUser({username, password}));
 
-
-        setEmail('');
+        setUsername('');
         setPassword('');
-
         navigate(PATH_NAMES.MAIN);
     };
+
+    if (loginStatus === 'loading') {
+        return <Loader/>;
+    }
 
     return (
         <>
@@ -56,9 +57,9 @@ const Login = ({setToken}) => {
                                     id="email"
                                     name="email"
                                     type="email"
-                                    value={email}
+                                    value={username}
                                     autoComplete="email"
-                                    onChange={(e) => setEmail(e.target.value)}
+                                    onChange={(e) => setUsername(e.target.value)}
                                     required
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1
                                     ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset

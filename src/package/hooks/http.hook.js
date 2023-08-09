@@ -1,21 +1,21 @@
+import axios from 'axios';
 
 export const useHttp = () => {
-    const request = async (url, method = 'GET', body = null, headers = {'Content-Type': 'application/json'}) => {
-
+    const request = async (url, method = 'GET', data = null, headers =
+        {'Content-Type': 'application/json'}) => {
         try {
-            const response = await fetch(url, {method, body, headers});
+            const response = await axios({
+                method,
+                url,
+                data,
+                headers
+            });
 
-            if (!response.ok) {
-                throw new Error(`Could not fetch ${url}, status: ${response.status}`);
-            }
-
-            const data = await response.json();
-
-            return data;
-        } catch(e) {
-            throw e;
+            return response.data;
+        } catch (error) {
+            throw error;
         }
     };
 
-    return {request}
-}
+    return {request};
+};

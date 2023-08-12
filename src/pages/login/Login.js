@@ -5,6 +5,7 @@ import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {Loader} from "../../package/components/Loader";
 import {loginUser} from "./loginSlice";
+import {toggleForm} from "../register/registerSlice";
 
 const Login = () => {
 
@@ -23,7 +24,7 @@ const Login = () => {
 
         setUsername('');
         setPassword('');
-        navigate(PATH_NAMES.MAIN);
+        navigate(PATH_NAMES.HOME);
     };
 
     if (loginStatus === 'loading') {
@@ -112,7 +113,7 @@ const Login = () => {
 
                     <p className="mt-10 text-center text-sm text-gray-500">
                         {'New to this app? '}
-                        <Link to={PATH_NAMES.REGISTER} className="font-medium text-indigo-600 hover:text-indigo-500">
+                        <Link  to={PATH_NAMES.REGISTER} className="font-medium text-indigo-600 hover:text-indigo-500">
                             Sign up
                         </Link>
                     </p>

@@ -8,7 +8,8 @@ const initialToken = localStorage.getItem('token') || '';
 const initialState = registerAdapter.getInitialState({
     isRegistered: false,
     token: initialToken,
-    registrationStatus: 'idle'
+    registrationStatus: 'idle',
+    isLoginFormDisplayed: true
 });
 
 export const registerUser = createAsyncThunk(
@@ -30,7 +31,11 @@ export const registerSlice = createSlice({
 
     name: 'register',
     initialState,
-
+    reducers: {
+        toggleForm: (state) => {
+            state.isLoginFormDisplayed = !state.isLoginFormDisplayed;
+        },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(registerUser.pending, (state, action) => {
@@ -48,5 +53,6 @@ export const registerSlice = createSlice({
 
 const {reducer} = registerSlice;
 
+export const {toggleForm} = registerSlice.actions;
 export default reducer;
 

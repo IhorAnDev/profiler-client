@@ -6,7 +6,7 @@ const registerAdapter = createEntityAdapter();
 const initialToken = localStorage.getItem('token') || '';
 
 const initialState = registerAdapter.getInitialState({
-    isLogged: false,
+    isLogged: initialToken !== '',
     token: initialToken,
     loginStatus: 'idle'
 });
@@ -31,6 +31,9 @@ export const loginSlice = createSlice({
     reducers: {
         setToken: (state, action) => {
             state.token = action.payload;
+        },
+        setIsLogged: (state, action) => {
+            state.isLogged = action.payload;
         }
     },
     extraReducers: (builder) => {
@@ -44,11 +47,14 @@ export const loginSlice = createSlice({
             })
             .addCase(loginUser.rejected, (state) => {
                 state.loginStatus = 'failed';
+                state.isLogged = false;
             })
     }
 })
 
-const { reducer} = loginSlice;
+const {reducer} = loginSlice;
+
+export const {setToken, setIsLogged} = loginSlice.actions;
 
 export default reducer;
 

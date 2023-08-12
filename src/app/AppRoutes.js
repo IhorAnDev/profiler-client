@@ -1,8 +1,11 @@
-import {lazy, Suspense, useState} from "react";
+import {lazy, Suspense} from "react";
 import {Loader} from "../package/components/Loader";
 import {Route, Routes} from "react-router-dom";
-import {PATH_NAMES} from "../consts";
+import {PATH_NAMES as PATH_NAME, PATH_NAMES} from "../consts";
+import Header from "../pages/header/Header";
 import MainPage from "../pages/main-page/MainPage";
+import ProtectedMainRoute from "./ProtectedRoute";
+import Home from "../pages/home/Home";
 
 
 const Login = lazy(() => import("../pages/login/Login"));
@@ -10,14 +13,21 @@ const Registration = lazy(() => import("../pages/register/Registration"));
 const AppRoutes = () => {
 
     return (
-        <Suspense fallback={<Loader/>}>
-            <Routes>
-                <Route path={PATH_NAMES.HOME} element={<Login/>}/>
-                <Route path={PATH_NAMES.REGISTER} element={<Registration/>}/>
-                <Route path={PATH_NAMES.MAIN}
-                       element={<MainPage/>}/>
-            </Routes>
-        </Suspense>
+        <>
+            <Header/>
+            <Suspense fallback={<Loader/>}>
+                <Routes>
+                    <Route exact path={PATH_NAMES.LOGIN} element={<Login/>}/>
+                    <Route exact path={PATH_NAMES.REGISTER} element={<Registration/>}/>
+                    <Route exact path={PATH_NAME.MAIN} element={<ProtectedMainRoute/>}>
+                        <Route exact path={PATH_NAMES.MAIN} element={<MainPage/>}/>
+                    </Route>
+                    <Route exact path={PATH_NAME.HOME} element={<ProtectedMainRoute/>}>
+                        <Route exact path={PATH_NAMES.HOME} element={<Home/>}/>
+                    </Route>
+                </Routes>
+            </Suspense>
+        </>
     );
 }
 

@@ -8,6 +8,8 @@ const initialToken = localStorage.getItem('token') || '';
 const initialState = registerAdapter.getInitialState({
     isLogged: initialToken !== '',
     token: initialToken,
+    userFirstName: '',
+    userLastName: '',
     loginStatus: 'idle'
 });
 
@@ -34,6 +36,12 @@ export const loginSlice = createSlice({
         },
         setIsLogged: (state, action) => {
             state.isLogged = action.payload;
+        },
+        setUserFirstName: (state, action) => {
+            state.userFirstName = action.payload;
+        },
+        setUserLastName: (state, action) => {
+            state.userLastName = action.payload;
         }
     },
     extraReducers: (builder) => {
@@ -41,9 +49,11 @@ export const loginSlice = createSlice({
             .addCase(loginUser.pending, (state) => {
                 state.loginStatus = 'loading';
             })
-            .addCase(loginUser.fulfilled, (state) => {
+            .addCase(loginUser.fulfilled, (state, action) => {
                 state.loginStatus = 'idle';
                 state.isLogged = true;
+                state.userFirstName = action.payload.firstName;
+                state.userLastName = action.payload.lastName;
             })
             .addCase(loginUser.rejected, (state) => {
                 state.loginStatus = 'failed';

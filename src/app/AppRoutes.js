@@ -1,8 +1,8 @@
 import {lazy, Suspense} from "react";
-import {Loader} from "../package/components/Loader";
+import {Loader} from "../package/components/loader/Loader";
 import {Route, Routes} from "react-router-dom";
 import {PATH_NAMES as PATH_NAME, PATH_NAMES} from "../consts";
-import Header from "../pages/header/Header";
+import Header from "../package/components/header/Header";
 import MainPage from "../pages/main-page/MainPage";
 import ProtectedMainRoute from "./ProtectedRoute";
 import Home from "../pages/home/Home";

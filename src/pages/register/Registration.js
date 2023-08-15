@@ -4,7 +4,7 @@ import {PATH_NAMES} from "../../consts";
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {registerUser} from "./registerSlice";
-import {Loader} from "../../package/components/Loader";
+import {Loader} from "../../package/components/loader/Loader";
 import {toggleForm} from "./registerSlice";
 
 const RegistryForm = () => {

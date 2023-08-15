@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {PATH_NAMES} from "../../consts";
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {Loader} from "../../package/components/Loader";
+import {Loader} from "../../package/components/loader/Loader";
 import {loginUser} from "./loginSlice";
 import {toggleForm} from "../register/registerSlice";
 

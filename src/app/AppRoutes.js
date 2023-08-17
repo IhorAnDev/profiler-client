@@ -19,9 +19,9 @@ const AppRoutes = () => {
                 <Routes>
                     <Route exact path={PATH_NAMES.LOGIN} element={<Login/>}/>
                     <Route exact path={PATH_NAMES.REGISTER} element={<Registration/>}/>
-                    <Route exact path={PATH_NAME.MAIN} element={<ProtectedMainRoute/>}>
-                        <Route exact path={PATH_NAMES.MAIN} element={<MainPage/>}/>
-                    </Route>
+                    {/*<Route exact path={PATH_NAME.MAIN} element={<ProtectedMainRoute/>}>*/}
+                    <Route exact path={PATH_NAMES.MAIN} element={<MainPage/>}/>
+                    {/*</Route>*/}
                     <Route exact path={PATH_NAME.HOME} element={<ProtectedMainRoute/>}>
                         <Route exact path={PATH_NAMES.HOME} element={<Home/>}/>
                     </Route>

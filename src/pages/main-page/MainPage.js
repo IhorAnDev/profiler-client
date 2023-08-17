@@ -1,9 +1,10 @@
+import Portfolio from "../../package/components/portfolio/Portfolio";
 
 const MainPage = () => {
 
     return (
-        <div>
-            <h1>Main Page</h1>
+        <div className="main__container">
+            <Portfolio/>
         </div>
     );
 }

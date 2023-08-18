@@ -4,7 +4,7 @@ import {Route, Routes} from "react-router-dom";
 import {PATH_NAMES as PATH_NAME, PATH_NAMES} from "../consts";
 import Header from "../package/components/header/Header";
 import MainPage from "../pages/main-page/MainPage";
-import ProtectedMainRoute from "./ProtectedRoute";
+import ProtectedRoute from "./ProtectedRoute";
 import Home from "../pages/home/Home";
 
 
@@ -17,14 +17,14 @@ const AppRoutes = () => {
             <Header/>
             <Suspense fallback={<Loader/>}>
                 <Routes>
+                    {/*<Route exact path={PATH_NAME.HOME} element={<ProtectedRoute/>}>*/}
+                        <Route exact path={PATH_NAMES.HOME} element={<Home/>}/>
+                    {/*</Route>*/}
                     <Route exact path={PATH_NAMES.LOGIN} element={<Login/>}/>
                     <Route exact path={PATH_NAMES.REGISTER} element={<Registration/>}/>
-                    {/*<Route exact path={PATH_NAME.MAIN} element={<ProtectedMainRoute/>}>*/}
+                    {/*<Route exact path={PATH_NAME.MAIN} element={<ProtectedRoute/>}>*/}
                     <Route exact path={PATH_NAMES.MAIN} element={<MainPage/>}/>
                     {/*</Route>*/}
-                    <Route exact path={PATH_NAME.HOME} element={<ProtectedMainRoute/>}>
-                        <Route exact path={PATH_NAMES.HOME} element={<Home/>}/>
-                    </Route>
                 </Routes>
             </Suspense>
         </>

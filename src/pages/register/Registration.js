@@ -7,6 +7,7 @@ import {registerUser} from "./registerSlice";
 import {Loader} from "../../package/components/loader/Loader";
 import {toggleForm} from "./registerSlice";
 
+//TODO redo to Formic library
 const RegistryForm = () => {
 
     const [username, setUsername] = useState('');
@@ -157,7 +158,7 @@ const RegistryForm = () => {
 
                     <p className="mt-10 text-center text-sm text-gray-500">
                         Already have an account?{' '}
-                        <Link  to={PATH_NAMES.LOGIN}
+                        <Link to={PATH_NAMES.LOGIN}
                               className="font-medium text-indigo-600 hover:text-indigo-500">
                             Login
                         </Link>

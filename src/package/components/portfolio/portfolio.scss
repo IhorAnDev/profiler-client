@@ -1,0 +1,108 @@
+
+.portfolio {
+  // .portfolio__container
+  &__container {
+  }
+
+  // .portfolio__body
+  &__body {
+    max-width: 50rem;
+    border-right: 1px solid #7123d3;
+    border-left: 1px solid #7123d3;
+    padding: 8px;
+    box-shadow: 0 0 2px rgb(148, 94, 215);
+  }
+
+  // .portfolio__title
+  &__title {
+    padding: 0.3rem 0.5rem 0.1rem 0.5rem;
+    // .portfolio__title_text
+    &_text {
+      font-size: 1.5rem;
+    }
+  }
+
+  // .portfolio__location
+  &__location {
+    padding: 0 0.5rem 0.1rem 0.5rem;
+    // .portfolio__location_text
+    &_text {
+      color: #7a7383;
+    }
+  }
+
+  // .portfolio__image
+  &__image {
+  }
+
+  // .portfolio__owner
+  &__owner {
+    padding: 0.3rem 0.5rem 0 0.5rem;
+    color: #7a7383;
+  }
+
+  // .portfolio__like
+  &__like {
+    display: flex;
+    align-items: center;
+    padding: 0.3rem 0 0.5rem 0.5rem;
+    // .portfolio__like_image
+
+    &_image {
+      max-width: 20px;
+    }
+
+    &_text {
+      font-size: 1rem;
+      margin-left: 0.5rem;
+    }
+  }
+
+  // .portfolio__comments
+  &__comments {
+    padding-left: 0.5rem;
+  }
+
+  // .portfolio__input
+  &__input {
+    margin: 0.7rem 0 1.5rem 0;
+    padding: 0 0.5rem;
+
+    input {
+      padding: 20px 0 5px 5px;
+      border: none; // Remove all borders except bottom
+      border-bottom: 1px solid #a798b7; // Add bottom border
+      width: 100%;
+
+      &:focus {
+        border: none; // R
+        outline: none; // Remove outline on focus (optional)
+        border-bottom: 2px solid #a781d5; /// Change border color when focused (optional)
+        box-shadow: none; // Change shadow color on focus
+      }
+    }
+  }
+
+  &__input_item {
+    padding: 5px 5px;
+
+    &_label {
+      display: block;
+      border: none; // Remove all borders except bottom
+      border-bottom: 1px solid #a798b7; // Add bottom border
+      width: 100%;
+
+      &_input {
+        border: none;
+        padding: 0 0 5px 5px;
+        width: 100%;
+
+        &:focus {
+          border: none;
+          outline: none;
+          box-shadow: none;
+        }
+      }
+    }
+  }
+}

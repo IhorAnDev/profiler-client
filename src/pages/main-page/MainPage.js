@@ -4,7 +4,7 @@ const MainPage = () => {
 
     return (
         <div className="main__container">
-            <Portfolio/>
+
         </div>
     );
 }

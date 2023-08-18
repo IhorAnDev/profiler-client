@@ -1,7 +1,10 @@
+import Portfolio from "../../package/components/portfolio/Portfolio";
+import './home.scss'
+
 const Home = () => {
     return (
-        <div>
-            <h1>Home Page</h1>
+        <div className="home__container">
+            <Portfolio/>
         </div>
     )
 }

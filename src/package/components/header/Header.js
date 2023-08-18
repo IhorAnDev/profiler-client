@@ -8,6 +8,8 @@ import {PATH_NAMES} from "../../../consts";
 import {setIsLogged} from "../../../pages/login/loginSlice";
 import React, {useState} from "react";
 
+
+//TODO Make sticky header
 const Header = () => {
     const isLogged = useSelector(state => state.login.isLogged);
     const userFirstName = useSelector(state => state.login.userFirstName);

@@ -7,6 +7,7 @@ import {Loader} from "../../package/components/loader/Loader";
 import {loginUser} from "./loginSlice";
 import {toggleForm} from "../register/registerSlice";
 
+//TODO redo to Formic library
 const Login = () => {
 
     const [username, setUsername] = useState('');

@@ -1,9 +1,11 @@
 import {createAsyncThunk, createEntityAdapter, createSlice} from "@reduxjs/toolkit";
 import {useHttp} from "../../package/hooks/http.hook";
+import {API_URL} from "../../consts";
+import {getTokenFromLocalStorage, setTokenToLocalStorage} from "../../api/tokenStorage";
 
 const registerAdapter = createEntityAdapter();
 
-const initialToken = localStorage.getItem('token') || '';
+const initialToken = getTokenFromLocalStorage();
 
 const initialState = registerAdapter.getInitialState({
     isLogged: initialToken !== '',
@@ -15,14 +17,15 @@ const initialState = registerAdapter.getInitialState({
 
 export const loginUser = createAsyncThunk(
     'login/loginUser',
-    async ({username, password}) => {
+    async ({username, password}, {dispatch}) => {
         const {request} = useHttp();
 
-        const response = await request('http://localhost:8085/api/auth/login', 'POST', {
+        const response = await request(`${API_URL}/auth/login`, 'POST', {
             username,
             password
         }); // This should contain the response object from your API
-        localStorage.setItem('token', response.token);
+        setTokenToLocalStorage(response.token)
+        dispatch(setToken(response.token));
         return response;
     }
 );

@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {toggleForm} from "../../../pages/register/registerSlice";
 import {Navigate, useNavigate} from "react-router-dom";
 import {PATH_NAMES} from "../../../consts";
-import {setIsLogged} from "../../../pages/login/loginSlice";
+import {setIsLogged, setToken} from "../../../pages/login/loginSlice";
 import React, {useState} from "react";
 
 
@@ -24,6 +24,8 @@ const Header = () => {
             // Perform logout logic here
             dispatch(setIsLogged(false));
             localStorage.removeItem('token');
+            dispatch(setToken(''));
+            navigate(PATH_NAMES.LOGIN);
         } else {
             // Perform login logic here
             dispatch(toggleForm());

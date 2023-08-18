@@ -1,6 +1,7 @@
 import {configureStore} from "@reduxjs/toolkit";
 import register from "../pages/register/registerSlice";
 import login from "../pages/login/loginSlice";
+import {apiSlice} from "../api/apiSlice";
 
 const stringMiddleware = () => (next) => (action) => {
     if (typeof action === 'string') {
@@ -11,9 +12,12 @@ const stringMiddleware = () => (next) => (action) => {
 
 const store = configureStore({
     reducer: {
-        register, login
+        register,
+        login,
+        [apiSlice.reducerPath]: apiSlice.reducer
     },
-    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(stringMiddleware),
+    middleware: getDefaultMiddleware => getDefaultMiddleware()
+        .concat(stringMiddleware, apiSlice.middleware),
     devTools: process.env.NODE_ENV !== 'production'
 })
 

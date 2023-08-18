@@ -17,14 +17,14 @@ const AppRoutes = () => {
             <Header/>
             <Suspense fallback={<Loader/>}>
                 <Routes>
-                    {/*<Route exact path={PATH_NAME.HOME} element={<ProtectedRoute/>}>*/}
+                    <Route exact path={PATH_NAME.HOME} element={<ProtectedRoute/>}>
                         <Route exact path={PATH_NAMES.HOME} element={<Home/>}/>
-                    {/*</Route>*/}
+                    </Route>
                     <Route exact path={PATH_NAMES.LOGIN} element={<Login/>}/>
                     <Route exact path={PATH_NAMES.REGISTER} element={<Registration/>}/>
-                    {/*<Route exact path={PATH_NAME.MAIN} element={<ProtectedRoute/>}>*/}
-                    <Route exact path={PATH_NAMES.MAIN} element={<MainPage/>}/>
-                    {/*</Route>*/}
+                    <Route exact path={PATH_NAME.MAIN} element={<ProtectedRoute/>}>
+                        <Route exact path={PATH_NAMES.MAIN} element={<MainPage/>}/>
+                    </Route>
                 </Routes>
             </Suspense>
         </>

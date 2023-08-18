@@ -4,8 +4,9 @@ import {useSelector} from "react-redux";
 
 const ProtectedRoute = () => {
     const isLogged = useSelector(state => state.login.isLogged);
+    const isRegistered = useSelector(state => state.register.isRegistered);
 
-    return isLogged ? <Outlet/> : <Navigate to={PATH_NAMES.LOGIN}/>;
+    return (isRegistered || isLogged) ? <Outlet/> : <Navigate to={PATH_NAMES.LOGIN}/>;
 }
 
 export default ProtectedRoute;

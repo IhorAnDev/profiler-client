@@ -1,12 +1,14 @@
 import {createAsyncThunk, createEntityAdapter, createSlice} from "@reduxjs/toolkit";
 import {useHttp} from "../../package/hooks/http.hook";
+import {API_URL} from "../../consts";
+import {getTokenFromLocalStorage, setTokenToLocalStorage} from "../../api/tokenStorage";
 
 const registerAdapter = createEntityAdapter();
 
-const initialToken = localStorage.getItem('token') || '';
+const initialToken = getTokenFromLocalStorage();
 
 const initialState = registerAdapter.getInitialState({
-    isRegistered: false,
+    isRegistered: initialToken !== '',
     token: initialToken,
     registrationStatus: 'idle',
     isLoginFormDisplayed: true
@@ -14,16 +16,17 @@ const initialState = registerAdapter.getInitialState({
 
 export const registerUser = createAsyncThunk(
     'register/registerUser',
-    async ({username, email, password, confirmPassword}) => {
+    async ({username, email, password, confirmPassword}, {dispatch}) => {
         const {request} = useHttp();
 
-        const response = await request('http://localhost:8085/api/auth/signup', 'POST', {
+        const response = await request(`${API_URL}/auth/signup`, 'POST', {
             username,
             email,
             password,
             confirmPassword
         }); // This should contain the response object from your API
-        localStorage.setItem('token', response.token);
+        setTokenToLocalStorage(response.token);
+        dispatch(setToken(response.token));
         return response;
     }
 );
@@ -32,6 +35,9 @@ export const registerSlice = createSlice({
     name: 'register',
     initialState,
     reducers: {
+        setToken: (state, action) => {
+            state.token = action.payload;
+        },
         toggleForm: (state) => {
             state.isLoginFormDisplayed = !state.isLoginFormDisplayed;
         },
@@ -53,6 +59,6 @@ export const registerSlice = createSlice({
 
 const {reducer} = registerSlice;
 
-export const {toggleForm} = registerSlice.actions;
+export const {toggleForm, setToken} = registerSlice.actions;
 export default reducer;
 

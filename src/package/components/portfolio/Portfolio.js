@@ -34,11 +34,9 @@ const Portfolio = () => {
                     </ul>
                 </div>
                 <div className="portfolio__input">
-                    <input placeholder="Leave comment" type="text"/>
-                </div>
-                <div className="portfolio__input_item">
-                    <label className="portfolio__input_item_label" htmlFor="commentId">
-                        <input className="portfolio__input_item_label_input" placeholder="Leave comment"
+                    <label className="portfolio__input_label" htmlFor="commentId">
+                        <input className="portfolio__input_label_input"
+                               placeholder="Leave comment"
                                type="text" name="comment" id="commentId"/>
                     </label>
                 </div>

@@ -43,9 +43,11 @@ const Home = () => {
 
     const elements = renderPortfolioList(portfolios);
     return (
-        <>
-            {elements}
-        </>
+        <div className="home__container">
+            <TransitionGroup component="ul">
+                {elements}
+            </TransitionGroup>
+        </div>
     )
 }
 

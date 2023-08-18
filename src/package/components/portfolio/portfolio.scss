@@ -1,16 +1,13 @@
 
 .portfolio {
-  // .portfolio__container
-  &__container {
-  }
 
-  // .portfolio__body
-  &__body {
+  &__item {
     max-width: 50rem;
     border-right: 1px solid #7123d3;
     border-left: 1px solid #7123d3;
     padding: 8px;
     box-shadow: 0 0 2px rgb(148, 94, 215);
+    margin-bottom: 3rem;
   }
 
   // .portfolio__title

@@ -6,7 +6,7 @@ import {toggleForm} from "../../../pages/register/registerSlice";
 import {Navigate, useNavigate} from "react-router-dom";
 import {PATH_NAMES} from "../../../consts";
 import {setIsLogged, setToken} from "../../../pages/login/loginSlice";
-import React, {useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 
 
 //TODO Make sticky header
@@ -18,6 +18,16 @@ const Header = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const dropdownRef = useRef(null);
+    const profileIconClicked = useRef(false);
+
+
+    useEffect(() => {
+        document.addEventListener('click', handleClickOutside);
+        return () => {
+            document.removeEventListener('click', handleClickOutside);
+        };
+    }, [isDropdownOpen]);
 
     const handleLogoClick = () => {
         if (isLogged) {
@@ -33,12 +43,17 @@ const Header = () => {
         }
     }
 
-    function toggleDropdown() {
+
+    const handleProfileClick = () => {
+        profileIconClicked.current = true;
         setIsDropdownOpen(!isDropdownOpen);
     }
 
-    function handleProfileClick() {
-        toggleDropdown();
+    const handleClickOutside = (event) => {
+        if (!profileIconClicked.current && dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+            setIsDropdownOpen(false);
+        }
+        profileIconClicked.current = false;
     }
 
     return (
@@ -52,12 +67,13 @@ const Header = () => {
                         </div>
                     )}
                     {isLogged && (
-                        <div className="header__menu-profile">
+                        <div className="header__menu-profile"
+                        >
                             <img src={profile}
                                  alt="profile-logo"
                                  onClick={handleProfileClick}/>
                             {isDropdownOpen && (
-                                <div className="dropdown__menu">
+                                <div className="dropdown__menu" ref={dropdownRef}>
                                     <div className="dropdown__menu-item">Home</div>
                                     <div className="dropdown__menu-item">About</div>
                                     <div className="dropdown__menu-item">Privet</div>

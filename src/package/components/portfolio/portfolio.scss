@@ -58,6 +58,11 @@
   // .portfolio__comments
   &__comments {
     padding-left: 0.5rem;
+    &_item {
+        font-size: 1rem;
+        color: #6d24cb;
+      font-weight: bold;
+    }
   }
 
   // .portfolio__input

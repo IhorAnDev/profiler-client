@@ -1,35 +1,52 @@
-import portfolio from "../../../resources/image/portfolio.jpg";
 import like from "../../../resources/image/like.png";
 import './portfolio.scss';
+import {Loader} from "../loader/Loader";
 
-const Portfolio = () => {
+const Portfolio = ({image, title, description, likes, userName, location, category, comments}) => {
+
+    const newImage = `data:image/png;base64,${image}`;
+
+    console.log(comments);
+    const renderComments = (arr) => {
+        if (arr.length === 0) {
+            return (
+                <li>"There are no comments"</li>
+            )
+        }
+        return arr.map(({id, message}) => {
+            return (
+                <li key={id} className="portfolio__comments_item">{message}</li>
+            )
+        })
+    }
+
+
+    const elements = renderComments(comments);
     return (
         <li className="portfolio__item">
             <div className="portfolio__title">
-                <p className="portfolio__title_text"> Java project portfolio</p>
+                <p className="portfolio__title_text"> {title}</p>
             </div>
             <div className="portfolio__location">
-                <p className="portfolio__location_text">Estonia</p>
+                <p className="portfolio__location_text">{location}</p>
             </div>
             <div className="portfolio__image">
-                <img src={portfolio} alt="portfolio"/>
+                <img src={newImage} alt="portfolio"/>
             </div>
             <div className="portfolio__owner">
-                <p className="portfolio__owner_text">Owner: John Doe</p>
+                <p className="portfolio__owner_text">{userName}</p>
             </div>
             <div className="portfolio__like">
                 <div className="portfolio__like_image">
                     <img src={like} alt="like"/>
                 </div>
                 <div className="portfolio__like_text">
-                    <p>0</p>
+                    <p>{likes}</p>
                 </div>
             </div>
             <div className="portfolio__comments">
                 <ul>
-                    <li>Comment 1</li>
-                    <li>Comment 2</li>
-                    <li>Comment 3</li>
+                    {elements}
                 </ul>
             </div>
             <div className="portfolio__input">

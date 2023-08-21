@@ -3,6 +3,7 @@ import './home.scss'
 import {useGetPortfoliosQuery} from "../../api/apiSlice";
 import {Loader} from "../../package/components/loader/Loader";
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
+import PortfolioWithImage from "../../package/components/portfolio/PortfolioWithImage";
 
 const Home = () => {
 
@@ -19,7 +20,6 @@ const Home = () => {
         return <h1>Error</h1>;
     }
 
-    console.log(portfolios);
     const renderPortfolioList = (arr) => {
         if (arr.length === 0) {
             return (
@@ -34,7 +34,7 @@ const Home = () => {
                     <CSSTransition key={id}
                                    timeout={500}
                                    classNames="portfolio">
-                        <Portfolio {...props} />
+                        <PortfolioWithImage portfolioId={id} {...props} />
                     </CSSTransition>
                 )
             }

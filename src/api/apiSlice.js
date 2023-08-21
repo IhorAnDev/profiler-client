@@ -19,8 +19,14 @@ export const apiSlice = createApi({
         getPortfolios: builder.query({
             query: () => '/portfolio/all',
             providesTags: ['Portfolios']
+        }),
+        getPortfolioImages: builder.query({
+            query: (portfolioId) => `image/${portfolioId}/image`,
+        }),
+        getPortfolioComments: builder.query({
+            query: (portfolioId) => `comment/${portfolioId}/comments`,
         })
     })
 });
 
-export const {useGetPortfoliosQuery} = apiSlice;
+export const {useGetPortfoliosQuery, useGetPortfolioImagesQuery, useGetPortfolioCommentsQuery} = apiSlice;

@@ -6,6 +6,7 @@ const Portfolio = ({image, title, description, likes, userName, location, catego
 
     const newImage = `data:image/png;base64,${image}`;
 
+    // TODO create separate component for comments
     console.log(comments);
     const renderComments = (arr) => {
         if (arr.length === 0) {

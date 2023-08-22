@@ -34,7 +34,7 @@ const Home = () => {
                     <CSSTransition key={id}
                                    timeout={500}
                                    classNames="portfolio">
-                        <PortfolioWithImage portfolioId={id} {...props} />
+                        <Portfolio portfolioId={id} {...props} />
                     </CSSTransition>
                 )
             }

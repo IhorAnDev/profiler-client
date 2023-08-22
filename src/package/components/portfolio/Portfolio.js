@@ -1,22 +1,24 @@
 import like from "../../../resources/image/like.png";
+import like_red from "../../../resources/image/like_r.png";
 import './portfolio.scss';
 import {Loader} from "../loader/Loader";
 
-const Portfolio = ({image, title, description, likes, userName, location, category, comments}) => {
+const Portfolio = ({image, title, description, likes, userName, location, category, comments, ...portfolioProps}) => {
 
-    const newImage = `data:image/png;base64,${image}`;
+    console.log(comments);
+
+    const newImage = `data:image/png;base64,${image.imageByte}`;
 
     // TODO create separate component for comments
-    console.log(comments);
     const renderComments = (arr) => {
         if (arr.length === 0) {
             return (
                 <li>"There are no comments"</li>
             )
         }
-        return arr.map(({id, message}) => {
+        return arr.map(({id, message, userName}) => {
             return (
-                <li key={id} className="portfolio__comments_item">{message}</li>
+                <li key={id} className="portfolio__comments_item">{userName} - {message}</li>
             )
         })
     }
@@ -39,7 +41,7 @@ const Portfolio = ({image, title, description, likes, userName, location, catego
             </div>
             <div className="portfolio__like">
                 <div className="portfolio__like_image">
-                    <img src={like} alt="like"/>
+                    {likes > 0 ? <img src={like_red} alt="like"/> : <img src={like} alt="like"/>}
                 </div>
                 <div className="portfolio__like_text">
                     <p>{likes}</p>

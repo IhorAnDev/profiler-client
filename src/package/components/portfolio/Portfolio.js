@@ -1,7 +1,7 @@
 import like from "../../../resources/image/like.png";
 import like_red from "../../../resources/image/like_r.png";
 import './portfolio.scss';
-import {Loader} from "../loader/Loader";
+
 
 const Portfolio = ({image, title, description, likes, userName, location, category, comments, ...portfolioProps}) => {
 

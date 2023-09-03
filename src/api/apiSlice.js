@@ -25,8 +25,24 @@ export const apiSlice = createApi({
         }),
         getPortfolioComments: builder.query({
             query: (portfolioId) => `comment/${portfolioId}/comments`,
-        })
+        }),
+        likePortfolio: builder.mutation({
+            query: (portfolioId) => ({
+                url: `portfolio/${portfolioId}/like`,
+                method: 'POST',
+            }),
+        }),
+
+        getLikeCount: builder.query({
+            query: (portfolioId) => `portfolio/${portfolioId}/like-count`,
+        }),
     })
 });
 
-export const {useGetPortfoliosQuery, useGetPortfolioImagesQuery, useGetPortfolioCommentsQuery} = apiSlice;
+export const {
+    useGetPortfoliosQuery,
+    useGetPortfolioImagesQuery,
+    useGetPortfolioCommentsQuery,
+    useLikePortfolioMutation,
+    useGetLikeCountQuery
+} = apiSlice;

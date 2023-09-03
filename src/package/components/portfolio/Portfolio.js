@@ -1,13 +1,39 @@
 import like from "../../../resources/image/like.png";
 import like_red from "../../../resources/image/like_r.png";
 import './portfolio.scss';
+import {useGetLikeCountQuery, useLikePortfolioMutation} from "../../../api/apiSlice";
+import {useState} from "react";
 
 
-const Portfolio = ({image, title, description, likes, userName, location, category, comments, ...portfolioProps}) => {
-
-    console.log(comments);
+const Portfolio = ({
+                       portfolioId,
+                       image,
+                       title,
+                       description,
+                       likes,
+                       userName,
+                       location,
+                       category,
+                       comments,
+                       ...portfolioProps
+                   }) => {
 
     const newImage = `data:image/png;base64,${image.imageByte}`;
+    const [likePortfolio, {isFetching, isError}] = useLikePortfolioMutation();
+    const [likeCount, setLikeCount] = useState(likes);
+    const likePortfolioHandler = (e) => {
+        e.preventDefault();
+        if (!isFetching && !isError) {
+            if (likeCount === likes) {
+                // User is liking the portfolio
+                setLikeCount(likeCount + 1);
+            } else {
+                // User is unliking the portfolio
+                setLikeCount(likeCount - 1);
+            }
+            likePortfolio(portfolioId);
+        }
+    };
 
     // TODO create separate component for comments
     const renderComments = (arr) => {
@@ -40,11 +66,13 @@ const Portfolio = ({image, title, description, likes, userName, location, catego
                 <p className="portfolio__owner_text">{userName}</p>
             </div>
             <div className="portfolio__like">
-                <div className="portfolio__like_image">
-                    {likes > 0 ? <img src={like_red} alt="like"/> : <img src={like} alt="like"/>}
+                <div className="portfolio__like_image"
+                     onClick={likePortfolioHandler}
+                >
+                    {likeCount > 0 ? <img src={like_red} alt="like"/> : <img src={like} alt="like"/>}
                 </div>
                 <div className="portfolio__like_text">
-                    <p>{likes}</p>
+                    <p>{likeCount}</p>
                 </div>
             </div>
             <div className="portfolio__comments">

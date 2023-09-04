@@ -3,6 +3,7 @@ import like_red from "../../../resources/image/like_r.png";
 import './portfolio.scss';
 import {useGetLikeCountQuery, useLikePortfolioMutation} from "../../../api/apiSlice";
 import {useState} from "react";
+import Comment from "../comment/Comment";
 
 
 const Portfolio = ({
@@ -35,6 +36,8 @@ const Portfolio = ({
         }
     };
 
+
+
     // TODO create separate component for comments
     const renderComments = (arr) => {
         if (arr.length === 0) {
@@ -42,10 +45,8 @@ const Portfolio = ({
                 <li>"There are no comments"</li>
             )
         }
-        return arr.map(({id, message, userName}) => {
-            return (
-                <li key={id} className="portfolio__comments_item">{userName} - {message}</li>
-            )
+        return arr.map(({id, ...props}) => {
+            return <Comment key={id} {...props} id={id} />
         })
     }
 

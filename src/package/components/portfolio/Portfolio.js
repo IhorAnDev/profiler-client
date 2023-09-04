@@ -59,7 +59,9 @@ const Portfolio = ({
             <div className="portfolio__location">
                 <p className="portfolio__location_text">{location}</p>
             </div>
-            <div className="portfolio__image">
+            <div className="portfolio__image"
+                 onClick={() => console.log('Click on image')}
+            >
                 <img src={newImage} alt="portfolio"/>
             </div>
             <div className="portfolio__owner">
@@ -69,7 +71,7 @@ const Portfolio = ({
                 <div className="portfolio__like_image"
                      onClick={likePortfolioHandler}
                 >
-                    {likeCount > 0 ? <img src={like_red} alt="like"/> : <img src={like} alt="like"/>}
+                    {likeCount > likes ? <img src={like_red} alt="like"/> : <img src={like} alt="like"/>}
                 </div>
                 <div className="portfolio__like_text">
                     <p>{likeCount}</p>

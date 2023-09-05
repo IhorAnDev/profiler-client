@@ -2,6 +2,7 @@ import {configureStore} from "@reduxjs/toolkit";
 import register from "../pages/register/registerSlice";
 import login from "../pages/login/loginSlice";
 import {apiSlice} from "../api/apiSlice";
+import comments from "../package/components/comment/commentSlice";
 
 const stringMiddleware = () => (next) => (action) => {
     if (typeof action === 'string') {
@@ -14,6 +15,7 @@ const store = configureStore({
     reducer: {
         register,
         login,
+        comments,
         [apiSlice.reducerPath]: apiSlice.reducer
     },
     middleware: getDefaultMiddleware => getDefaultMiddleware()

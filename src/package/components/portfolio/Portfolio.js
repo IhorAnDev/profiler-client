@@ -4,6 +4,7 @@ import './portfolio.scss';
 import {useGetLikeCountQuery, useLikePortfolioMutation} from "../../../api/apiSlice";
 import {useState} from "react";
 import Comment from "../comment/Comment";
+import CommentForm from "../comment/CommentForm";
 
 
 const Portfolio = ({
@@ -36,6 +37,9 @@ const Portfolio = ({
         }
     };
 
+    const handleCommentClick = (id) => {
+        console.log(id);
+    }
 
 
     // TODO create separate component for comments
@@ -46,7 +50,7 @@ const Portfolio = ({
             )
         }
         return arr.map(({id, ...props}) => {
-            return <Comment key={id} {...props} id={id} />
+            return <Comment handleCommentClick={handleCommentClick} key={id} {...props} id={id}/>
         })
     }
 
@@ -61,7 +65,7 @@ const Portfolio = ({
                 <p className="portfolio__location_text">{location}</p>
             </div>
             <div className="portfolio__image"
-                 onClick={() => console.log('Click on image')}
+                 onClick={() => console.log('Click on image ' + portfolioId)}
             >
                 <img src={newImage} alt="portfolio"/>
             </div>
@@ -83,13 +87,7 @@ const Portfolio = ({
                     {elements}
                 </ul>
             </div>
-            <div className="portfolio__input">
-                <label className="portfolio__input_label" htmlFor="commentId">
-                    <input className="portfolio__input_label_input"
-                           placeholder="Leave comment"
-                           type="text" name="comment" id="commentId"/>
-                </label>
-            </div>
+            <CommentForm portfolioId={portfolioId}/>
         </li>
     )
 }

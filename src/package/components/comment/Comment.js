@@ -1,11 +1,6 @@
-const Comment = ({userName, message, id}) => {
 
-    function handleCommentClick(id) {
-        console.log(id);
-    }
-    
-    return <li className="portfolio__comments_item"
-               onClick={() => handleCommentClick(id)}>{userName}: {message}</li>
+const Comment = ({userName, message}) => {
+    return <li className="portfolio__comments_item">{userName}: {message}</li>
 }
 
 export default Comment;

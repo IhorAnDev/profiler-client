@@ -1,16 +1,20 @@
 import axios from 'axios';
 
 export const useHttp = () => {
-    const request = async (url, method = 'GET', data = null, headers =
+    const request = async (url, method = 'GET', data = null, token = null, headers =
         {'Content-Type': 'application/json'}) => {
         try {
-            const response = await axios({
+            const config = {
                 method,
                 url,
                 data,
-                headers
-            });
+                headers: {
+                    ...headers,
+                    Authorization: token ? `${token}` : '', // Include the token if it's provided
+                },
+            };
 
+            const response = await axios(config);
             return response.data;
         } catch (error) {
             throw error;
@@ -19,3 +23,4 @@ export const useHttp = () => {
 
     return {request};
 };
+

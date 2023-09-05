@@ -3,7 +3,9 @@ import './home.scss'
 import {useGetPortfoliosQuery} from "../../api/apiSlice";
 import {Loader} from "../../package/components/loader/Loader";
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
-import PortfolioWithImage from "../../package/components/portfolio/PortfolioWithImage";
+import {JWT_ERROR, PATH_NAMES} from "../../consts";
+import {Navigate, useNavigate} from "react-router-dom";
+import React from "react";
 
 const Home = () => {
 
@@ -12,10 +14,14 @@ const Home = () => {
         isFetching,
         isLoading,
         isError,
+        error,
     } = useGetPortfoliosQuery();
+    const navigate = useNavigate();
 
     if (isFetching || isLoading) {
         return <Loader/>;
+    } else if (isError && error.data === JWT_ERROR) {
+        return <Navigate to={PATH_NAMES.LOGIN} replace/>
     } else if (isError) {
         return <h1>Error</h1>;
     }

@@ -6,3 +6,6 @@ export const PATH_NAMES = {
     REGISTER: '/register',
     MAIN: '/main',
 }
+
+export const JWT_ERROR = 'Invalid JWT Token: Full authentication ' +
+    'is required to access this resource';

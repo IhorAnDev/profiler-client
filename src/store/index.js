@@ -3,6 +3,7 @@ import register from "../pages/register/registerSlice";
 import login from "../pages/login/loginSlice";
 import {apiSlice} from "../api/apiSlice";
 import comments from "../package/components/comment/commentSlice";
+import tokenExpirationMiddleware from "../middleware/tokenExpirationMiddleware";
 
 const stringMiddleware = () => (next) => (action) => {
     if (typeof action === 'string') {
@@ -19,7 +20,7 @@ const store = configureStore({
         [apiSlice.reducerPath]: apiSlice.reducer
     },
     middleware: getDefaultMiddleware => getDefaultMiddleware()
-        .concat(stringMiddleware, apiSlice.middleware),
+        .concat(stringMiddleware, apiSlice.middleware, tokenExpirationMiddleware),
     devTools: process.env.NODE_ENV !== 'production'
 })
 

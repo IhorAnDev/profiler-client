@@ -2,6 +2,7 @@ import {createAsyncThunk, createEntityAdapter, createSlice} from "@reduxjs/toolk
 import {useHttp} from "../../package/hooks/http.hook";
 import {API_URL} from "../../consts";
 import {getTokenFromLocalStorage, setTokenToLocalStorage} from "../../api/tokenStorage";
+import jwt_decode from "jwt-decode";
 
 const registerAdapter = createEntityAdapter();
 
@@ -29,12 +30,32 @@ export const loginUser = createAsyncThunk(
         return response;
     }
 );
+
+export const isTokenCloseToExpiry = (state) => {
+    const token = state.login.token;
+    if (token) {
+        const decodedToken = jwt_decode(token);
+        const expirationTime = decodedToken.exp * 1000; // Convert to milliseconds
+        const currentTime = Date.now();
+        const threshold = 5 * 60 * 1000; // 5 minutes
+
+        console.log(expirationTime - currentTime);
+
+        return expirationTime - currentTime < threshold;
+    }
+    return false;
+};
+
+
 export const loginSlice = createSlice({
     name: 'login',
     initialState,
 
     reducers: {
         setToken: (state, action) => {
+            state.token = action.payload;
+        },
+        refreshToken: (state, action) => {
             state.token = action.payload;
         },
         setIsLogged: (state, action) => {
@@ -67,7 +88,10 @@ export const loginSlice = createSlice({
 
 const {reducer} = loginSlice;
 
-export const {setToken, setIsLogged} = loginSlice.actions;
+export const {
+    setToken, setIsLogged,
+    refreshToken
+} = loginSlice.actions;
 
 export default reducer;
 

@@ -10,10 +10,12 @@ export const useHttp = () => {
                 data,
                 headers: {
                     ...headers,
-                    Authorization: token ? `${token}` : '', // Include the token if it's provided
+                    'Content-Type': 'application/json',
                 },
             };
-
+            if (token) {
+                config.headers['Authorization'] = `${token}`;
+            }
             const response = await axios(config);
             return response.data;
         } catch (error) {
